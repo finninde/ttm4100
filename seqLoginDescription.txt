@@ -1,0 +1,9 @@
+Login sequence diagram:
+
+Client connects to the server (client handler) with a JSON object.
+Server checks that the username is valid and unique. 
+	1: If it is valid it forwards the connection and username to ThreadedTCPServer. 
+	Which creates a new worker and adds the username as a key in the dictionary which reffers to the worker object.
+	The newly created worker sends all earlier messages back to the client. 
+	2: Invalid username, sends a error message back to the client. 
+	3: A username already taken will also create a error message back to the client. 
