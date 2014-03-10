@@ -184,7 +184,7 @@ class Worker(Thread):
 
 
 if __name__ == "__main__":
-    HOST = 'localhost'
+    HOST = '0.0.0.0'
     PORT = 9999
 
     # Create the server, binding to localhost on port 9999
