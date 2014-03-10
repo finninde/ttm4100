@@ -76,9 +76,6 @@ class Client(object):
         for message in dictionary['messages']:
             print message
 
-    def connection_closed(self, connection):
-        pass
-
     def send(self, type, data):
         d = {'request': type}
         if not type == 'logout':
@@ -87,10 +84,6 @@ class Client(object):
             else:
                 d[type] = data
         self.connection.sendall(json.dumps(d))
-
-    def force_disconnect(self):
-        pass
-
 
 if __name__ == "__main__":
     client = Client()

@@ -50,11 +50,10 @@ class ClientHandler(SocketServer.BaseRequestHandler):
             return False
         chars = set('abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ_')
         if any((c not in chars) for c in username):
-            print 'not ok'
+            #invalid username
             self.sendErrorMessage("invalid username: " + username + ", username can only contain alphanumerical values and underscores", username)
             return False
         else:
-            print 'ok'
             return True
         return True
 
@@ -69,11 +68,11 @@ class ClientHandler(SocketServer.BaseRequestHandler):
             return False
         allowed = not self.server.usernameExist(username)
         if allowed:
-            print "username ok"
+            #username ok
             Worker(self.server,self.request, username)
             return True
         else:
-            print "username not ok"
+            #username not ok
             self.sendErrorMessage("username already exists",username)
         return False
 '''
@@ -93,7 +92,7 @@ class ThreadedTCPServer(SocketServer.ThreadingMixIn, SocketServer.TCPServer):
 
     def addWorker(self, worker, username):
         self.list[username]= worker
-        print "worker added"
+        #"worker added"
 
     def sendMessage(self,username,data):
         if not self.usernameExist(username):
@@ -105,7 +104,7 @@ class ThreadedTCPServer(SocketServer.ThreadingMixIn, SocketServer.TCPServer):
         return True
     def removeWorker(self,username):
         self.list.pop(username,None)
-        print "worker removed"
+        #"worker removed"
     def getMessages(self):
         return self.messages
 
@@ -130,7 +129,7 @@ class Worker(Thread):
 
     def run(self):
         self.initialMessage()
-        print "A thread has started!!"
+       # "A thread has started!!"
         while 1:
             try:
                 data = self.connection.recv(1024)
@@ -138,7 +137,7 @@ class Worker(Thread):
                     print data + " printed in thread"
                     self.decode(data)
                 else:
-                    print 'Client disconnected!'
+                    #'Client disconnected!'
                     raise Exception("damn")
             except Exception:
                 self.listener.removeWorker(self.username)
