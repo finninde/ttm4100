@@ -87,4 +87,4 @@ class Client(object):
 
 if __name__ == "__main__":
     client = Client()
-    client.start('localhost', 9999)
+    client.start(raw_input("type server ip: "), 15151)
