@@ -184,8 +184,8 @@ class Worker(Thread):
 
 
 if __name__ == "__main__":
-    HOST = 'localhost'
-    PORT = 9999
+    HOST = '0.0.0.0'
+    PORT = 15151
 
     # Create the server, binding to localhost on port 9999
     server = ThreadedTCPServer((HOST, PORT), ClientHandler)
