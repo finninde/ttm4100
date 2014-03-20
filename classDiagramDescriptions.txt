@@ -1,0 +1,15 @@
+Client-CLientHandler relation:
+	Client sends login request to CLientHandler with desired username in a JSON format.
+	CLientHandler performs a check on username in ThreadedTCPServer.connectedUsers{} dictionary. 
+	If denied the CLientHandler will send an error message back to the Client in a JSON format. 
+
+Client-Worker relation:
+	Client sends a message to Worker in a JSON format. Client can send a logout message in a JSON format.
+	Worker can send messages to the client in a JSON format. 
+
+CLientHandler-ThreadedTCPServer relation:
+	CLientHandler can check if a username exists in the connectedUsers dictionary in ThreadedTCPServer. CLientHandler can add a new user to connectedUsers dictionary with a connection and username.
+
+Worker-ThreadedTCPServer relation:
+	ThreadedTCPServer can create a new worker, and delete existing workers. ThreadedTCPServer can broadcast messages to all Workers. 
+	Worker informs ThreadedTCPServer of new messages. Worker informs ThreadedTCPServer when a Client has logged out.

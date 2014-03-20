@@ -1,0 +1,2 @@
+Send message sequence diagram:
+Client sends data to Worker, which forwards it to ThreadedTCPServer. ThreadedTCPServer then sends the message back to all worker, so everybody that is signed in to the chat recieves the messages. The workers then forwards the message back to the clients.
